@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web3db-api:
+    image: web3db-api
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt/live/api.web3db.org/fullchain.pem:/https/fullchain.pem:ro
+      - /etc/letsencrypt/live/api.web3db.org/privkey.pem:/https/privkey.pem:ro
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    restart: unless-stopped
